@@ -1,0 +1,11 @@
+1. Install terraform using homebrew.
+2. Install tfswitch if you want to switch between different terraform versions.
+3. Securely store your keys using:
+    - Vault Provider
+    - AWS Cli
+    - Environment variables
+
+4. terraform init (cmd) => Initialize the project by letting it know all the dependencies/modules/plugins that the project needs and allow the project to pull them out from internet.
+5. terraform plan (cmd) => It tells terraform about the current state of infrastructure. i.e what all has been created and what needs to be newly created.
+6. terraform apply (cmd) => This will actually create the resources
+7. terraform destroy (cmd) => actually destroy the resources in the current state.
