@@ -12,3 +12,7 @@
 8. Dynamic blocks are used when you want to run the same code but with/for dynamic input variables. For eg: for ingress rule for different ports
 9. Terraform modules: Modules are self-contained packages of Terraform configurations that are managed as a group. Basically, its about creating a group of files that contains common and re-usable code.
     - If you make any change related to this, you'll have to trigger terraform init command again
+10. Backend: Terraform Backend defines the place where terraform can store the state files.
+11. Terraform plan -var-file=test.tfvars => Used for having same terraform script for different environments with different input variables
+12. Terraform import aws_vpc.myVpc2 vpc-id => This gives terraform to overtake state related to this myVpc2 with vpc id vpc-id
+13. Datasource => kind of query that we can execute in cloud provider. (I've implemented this in vars)
