@@ -9,3 +9,6 @@
 5. terraform plan (cmd) => It tells terraform about the current state of infrastructure. i.e what all has been created and what needs to be newly created.
 6. terraform apply (cmd) => This will actually create the resources
 7. terraform destroy (cmd) => actually destroy the resources in the current state.
+8. Dynamic blocks are used when you want to run the same code but with/for dynamic input variables. For eg: for ingress rule for different ports
+9. Terraform modules: Modules are self-contained packages of Terraform configurations that are managed as a group. Basically, its about creating a group of files that contains common and re-usable code.
+    - If you make any change related to this, you'll have to trigger terraform init command again
