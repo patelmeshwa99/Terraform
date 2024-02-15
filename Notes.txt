@@ -16,3 +16,42 @@
 11. Terraform plan -var-file=test.tfvars => Used for having same terraform script for different environments with different input variables
 12. Terraform import aws_vpc.myVpc2 vpc-id => This gives terraform to overtake state related to this myVpc2 with vpc id vpc-id
 13. Datasource => kind of query that we can execute in cloud provider. (I've implemented this in vars)
+14. 3 types/tiers of providers in terraform
+    Official => Coming under hashicorp name space; Officially maintained by Hashicorp
+    Partner => Third party organization. Eg Alibaba Cloud, Oracle Cloud platform
+    Community => created by small number of people for individual usage; Individual contributors
+15. Not official tiered provider?
+    => use required_providers nested block inside terraform configuration block
+16. target => Instead of deleting all the resources that are there under one folder, we specify the resource following the -target flag
+    terraform destroy -target aws_instance.LOCAL_NAME_OF_INSTANCE
+17. terraform refresh => Fetch current state of infrastructure from cloud provider. Its already done when we hit plan and apply commands.
+18. Make sure that we provide the version under required_providers because in future, if a latest version comes up, there's quite a possibility that our old code might not work.
+    => Possible operators: >= | <= | ~> | >=, <= 
+19. Lock files => Ensures that the cloud provider version in current file matches the one that we have in lock file. Alternatively, use terraform init -upgrade
+20. Authentication details about the cloud provider can also be placed under provider configuration.
+    => shared_config_files, shared_credentials_files, profile.
+    => Creds not added here specifically OR by the above mentioned method, it'll, by itself fetch those from "%USERPROFILE%\.aws\config" & "%USERPROFILE%\.aws\credentials" files 
+21. Variables assignment:
+    => terraform plan -var="VAR_NAME=VALUE"
+    => Variables file (variables.tf)
+        => If you remove the default field from variables file, it will ask you in the prompt
+    => Terraform plan -var-file=test.tfvars (By default, it takes terraform.tfvars file)
+    => NOTE: Always a good practice to define variables and tfvars file
+    => Environment variable => setx TF_VAR_varName value
+22. Local values
+    => locals are just like variables except that 
+        => the value once assigned cannot be modified
+        => scope is local
+    => It can support conditional expression in itself. For e.g:
+        => locals { name_prefix = "${var.name != '' ? var.name : var.default}" }
+    => It supports operations like concat. This cannot be done with variables.
+23. Functions
+    => No support for user defined Functions. There are built in ones like concat, max, etc.
+24. Datasource
+    => Example: ami id changes according to region and the ami id in a specific region also keeps on changing. Hence, instead of hard
+        coding the values in code, we use data block. For example data "aws_ami" "varName" {} => Fetches data related to ami ids from aws_ami data source.
+25. Debugging
+    => TF_LOG environment variable could be used. Possible values: INFO, TRACE, DEBUG, WARN, ERROR
+    => TF_LOG_PATH: trace related msgs will be saved in the file name that you give here as its value.
+26. Terraform fmt: triggering this command will format the TF files that we have under that same location.
+27. Terraform validate: Syntactic validation. Finds unsupported arguments, undeclared variables, etc. Terraform plan runs this validate command behind the scenes.

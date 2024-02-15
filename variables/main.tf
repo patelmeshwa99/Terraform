@@ -20,6 +20,7 @@ variable "enabled" {
 variable "mylist" {
   type    = list(string)
   default = ["value1", "value2"]
+  // We can access individual value like this: var.mylist[0]
 }
 
 variable "mymap" {
@@ -28,6 +29,7 @@ variable "mymap" {
     Key1 = "Value1"
     Key2 = "Value2"
   }
+  // We can access individual value like this: var.mymap[key1]
 }
 
 variable "inputname" {
